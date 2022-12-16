@@ -137,4 +137,67 @@ undefined
   </p>
 </details>
 
+6.
+
+```javascript
+var foo = 'bar';
+
+(function(){
+  var foo = 42;
+  console.log(foo);
+})()
+
+console.log(foo)
+```
+ <details><summary>Solution</summary>
+  <p>
+    
+```
+42
+bar
+```
+  </p>
+</details>
+
+7.
+
+```javascript
+var foo = 'bar';
+
+(function(bar){
+  var foo = bar;
+  console.log(foo);
+})(foo)
+
+console.log(foo)
+```
+ <details><summary>Solution</summary>
+  <p>
+    
+```
+bar
+bar
+```
+  </p>
+</details>
+
+8.
+
+```javascript
+(function iffe(){
+    var foo = 'bye';
+    console.log(foo)
+}())
+```
+ <details><summary>Solution</summary>
+  <p>
+    
+```
+bye
+```
+  </p>
+</details>
+
+
+
 
