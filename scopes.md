@@ -63,3 +63,78 @@ ReferenceError: bar is not defined
 ```
   </p>
 </details>
+
+3.
+
+```javascript
+var bar = 'yay'
+
+function foo(str){
+  eval(str)
+  console.log(bar)
+}
+
+foo('var bar =42')
+```
+ <details><summary>Solution</summary>
+  <p>
+    
+```
+42
+```
+  </p>
+</details>
+
+4.
+
+```javascript
+var bar = 'yay'
+
+function foo(str){
+  eval(str)
+  console.log(bar)
+}
+
+foo()
+```
+ <details><summary>Solution</summary>
+  <p>
+    
+```
+yay
+```
+  </p>
+</details>
+
+5.
+
+```javascript
+var obj = {
+  a: 2,
+  b: 3,
+  c: 4
+}
+
+obj.a = obj.b + obj.c;
+obj.c = obj.b - obj.a;
+
+with(obj){
+  a = b + c;  // equivalent obj.a = obj.b + obj.c;
+  c = b - a;  // equivalent obj.c = obj.b - obj.a;
+  d = 3;
+}
+
+console.log(obj.d)
+console.log(d)
+```
+ <details><summary>Solution</summary>
+  <p>
+    
+```
+undefined
+3
+```
+  </p>
+</details>
+
+
