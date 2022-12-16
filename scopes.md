@@ -179,6 +179,7 @@ bar
 bar
 ```
   </p>
+
 </details>
 
 8.
@@ -197,6 +198,30 @@ bye
 ```
   </p>
 </details>
+
+## Hoisting
+
+8.
+
+```javascript
+console.log(a)
+console.log(b)
+var a = b;
+var b = 2;
+console.log(b)
+console.log(a)
+```
+ <details><summary>Solution</summary>
+    
+
+   undefined
+   undefined
+   2
+   undefined
+
+
+</details>
+
 
 
 
