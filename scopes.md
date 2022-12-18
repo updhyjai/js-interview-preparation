@@ -516,6 +516,269 @@ foo()
     
 </details>
 
+## Closure
+
+17.
+
+```javascript
+function foo(){
+  var bar = 'bar';
+
+  function innerFoo(){
+    console.log(bar);
+  }
+
+  outerFoo(innerFoo)
+}
+
+function outerFoo(fn){
+  fn()
+}
+
+foo()
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    bar
+    
+</details>
+
+18.
+
+```javascript
+function foo(){
+  var bar = 'bar';
+
+  return function innerFoo(){
+    console.log(bar);
+  }
+
+  
+}
+
+function outerFoo(fn){
+  foo()()
+}
+
+outerFoo()
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    bar
+    
+</details>
+
+19.
+
+```javascript
+function foo(){
+  var bar = 'bar';
+
+  setTimeout(function innerFoo(){
+    console.log(bar)
+  },1000)
+
+  
+}
+
+foo()
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    bar
+    
+</details>
+
+20.
+
+```javascript
+function foo(){
+  var bar = 0;
+
+  setTimeout(function innerFoo(){
+    console.log(bar++)
+  },100)
+
+
+  setTimeout(function innerFoo(){
+    console.log(bar++)
+  },200)
+  
+}
+
+foo()
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    0
+    1
+    
+</details>
+
+21.
+
+```javascript
+function foo(){
+  var bar = 0;
+
+  setTimeout(function innerFoo(){
+    var baz = 1;
+    console.log(bar++)
+
+     setTimeout(function innerFoo(){
+      console.log(bar+baz)
+    },200)
+  },100)
+}
+
+foo()
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    0
+    2
+    
+</details>
+
+22.
+
+```javascript
+for(var i = 1 ; i<=5; i++){
+  setTimeout(function innerFn(){
+    console.log('i = ',i);
+  },i*100)
+}
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    i = 6
+    i = 6
+    i = 6
+    i = 6
+    i = 6
+    
+</details>
+
+23.
+
+```javascript
+for (var i = 1; i <= 5; i++) {
+  (function iffe(i) {
+    setTimeout(function innerFn() {
+      console.log('i = ', i);
+    }, i * 100);
+  })(i);
+}
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    i = 1
+    i = 2
+    i = 3
+    i = 4
+    i = 5
+    
+</details>
+
+23.
+
+```javascript
+for(var i = 1 ; i<=5; i++){
+  let j = i;
+  setTimeout(function innerFn(){
+    console.log('i = ',j);
+  },i*100)
+}
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    i = 1
+    i = 2
+    i = 3
+    i = 4
+    i = 5
+    
+</details>
+
+24.
+
+```javascript
+for(let i = 1 ; i<=5; i++){
+  setTimeout(function innerFn(){
+    console.log('i = ',j);
+  },i*100)
+}
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    i = 1
+    i = 2
+    i = 3
+    i = 4
+    i = 5
+    
+</details>
+
+
+25. Is the below code an example of closure? What is the output?
+
+```javascript
+var foo = (function iffe(){
+  var obj = {prop : 'bar'}
+  return {o : obj}
+})();
+
+console.log(foo.o.prop)
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    No. Closure is when a 'function' remembers or has access to its lexical scope while executing outside that lexical scope, not an object. Above example has reference to the object after iffe has been executed.
+    
+    Output: 
+    bar
+    
+</details>
+
+26. Is the below code an example of closure? What is the output?
+
+```javascript
+var foo = (function iffe(){
+  var obj = {prop : 'bar'}
+  return {o : obj}
+})();
+
+console.log(foo.o.prop)
+
+```
+<details>
+    <summary>Solution</summary>
+       
+    No. Closure is when a 'function' remembers or has access to its lexical scope while executing outside that lexical scope, not an object. Above example has reference to the object after iffe has been executed.
+    
+    Output: 
+    bar
+    
+</details>
 
 
 
