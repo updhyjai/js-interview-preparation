@@ -780,6 +780,87 @@ console.log(foo.o.prop)
     
 </details>
 
+## Prototypes
+
+27. Solve 
+
+```javascript
+function Foo(who){
+  this.me = who;
+}
+
+Foo.prototype.identity = function(){
+  console.log('I am ', this.me);
+}
+
+var a1 = new Foo('a1');
+var a2 = new Foo('a2');
+
+a2.speak = function(){
+  conosle.log('Hi ', this.identity());
+}
+
+console.log(a1.constructor === Foo)
+console.log(a1.constructor === a2.constructor)
+console.log(a1.__proto__ === Foo.prototype)
+console.log(a1.__proto__ === a2.__proto__)
+console.log(a1.__proto__ === Object.getPrototypeOf(a1))
+console.log(a2.__proto__ === a1.constructor.prototype)
+
+
+```
+<details>
+    <summary>Solution</summary>
+    
+    true
+    true
+    true
+    true
+    true
+    true
+
+</details>
+
+28. Solve 
+
+```javascript
+function Foo(who){
+  this.me = who;
+}
+
+Foo.prototype.identity = function(){
+  return 'I am '+ this.me;
+}
+
+function Bar(who){
+  Foo.call(this,who)
+}
+
+Bar.prototype = Object.create(Foo.prototype);
+
+Bar.prototype.speak = function(){
+  console.log('Hi, ', this.identity());
+}
+
+var b1 = new Bar('b1')
+var b2 = new Bar('b2')
+
+b1.speak();
+b2.speak();
+console.log(b1.constructor)
+console.log(b2.constructor)
+
+
+```
+<details>
+    <summary>Solution</summary>
+    
+    Hi, I am b1
+    Hi, I am b2
+    ƒ Foo()
+    ƒ Foo()
+
+</details>
 
 
 
